@@ -1,0 +1,20 @@
+{
+  "name": "reds-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Samuel Richardson",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.6.0",
+    "crawler": "^0.4.1",
+    "lodash": "^3.1.0",
+    "node-geocoder": "^2.14.0",
+    "openurl": "^1.1.0",
+    "sequelize": "^2.0.0-rc8",
+    "sqlite3": "^3.0.4"
+  }
+}
