@@ -2,7 +2,7 @@ module.exports = {
   domain: 'http://www.domain.com.au',
   suburbs: ['Brunswick', 'Northcote', 'Fitzroy', 'Coburg'],
   importance: {
-    distance: 4,
+    distance: 7,
     price: 2,
     bedrooms: 0.5
   },

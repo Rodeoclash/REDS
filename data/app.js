@@ -14,7 +14,7 @@ program
   .action(function(env) {
     Property.db.sync({force: true}).then(function () {
       var myCrawler = require("./lib/my_crawler.js");
-      myCrawler.queue(env);
+      myCrawler.queue(env.uri);
     });
   });
 
