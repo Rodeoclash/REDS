@@ -1,7 +1,6 @@
 var _ = require('lodash');
 var Config = require('../../../config.js');
-var FeaturesOld = require('./listing/features_old.js');
-var FeaturesNew = require('./listing/features_new.js');
+var Features = require('./listing/features.js');
 
 var Listing = function ($el) {
   this.$el = $el;
@@ -12,40 +11,30 @@ Listing.prototype._getElementHTML = function(selector) {
 };
 
 Listing.prototype.price = function() {
-  var value = this._getElementHTML(Config.listing[Config.listing.type].selectors.price).replace(',', '').replace('$', '').match(Config.listing[Config.listing.type].regex.price);
+  var priceText = this._getElementHTML(Config.listing[Config.listing.site].selectors.price);
+  if (!priceText) {
+    return 0;
+  }
+  var value = priceText.replace(',', '').replace('$', '').match(Config.listing[Config.listing.site].regex.price);
   return _.isNull(value) ? 0 : parseFloat(value[0]);
 };
 
 Listing.prototype.address = function() {
-  return this._getElementHTML(Config.listing[Config.listing.type].selectors.address);
-};
-
-Listing.prototype.title = function() {
-  return this._getElementHTML(Config.listing[Config.listing.type].selectors.title);
-};
-
-Listing.prototype.description = function() {
-  return this._getElementHTML(Config.listing[Config.listing.type].selectors.description);
+  return this._getElementHTML(Config.listing[Config.listing.site].selectors.address);
 };
 
 Listing.prototype.uri = function() {
-  return Config.domain + this.$el.find(Config.listing[Config.listing.type].selectors.uri).eq(0).attr('href');
+  return Config.domain + this.$el.find(Config.listing[Config.listing.site].selectors.uri).eq(0).attr('href');
 };
 
 Listing.prototype.features = function() {
-  if (Config.listing.type === 'new') {
-    return new FeaturesNew(this.$el.find(Config.listing[Config.listing.type].selectors.features));
-  } else {
-    return new FeaturesOld(this.$el.find(Config.listing[Config.listing.type].selectors.features));
-  }
+  return new Features(this.$el.find(Config.listing[Config.listing.site].selectors.features));
 };
 
 Listing.prototype.toJSON = function() {
   return {
     price: this.price(),
     address: this.address(),
-    title: this.title(),
-    description: this.description(),
     uri: this.uri(),
     bedrooms: this.features().bedrooms(),
     bathrooms: this.features().bathrooms(),

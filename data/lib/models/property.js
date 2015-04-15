@@ -5,8 +5,6 @@ var db = require('../models').db;
 var Property = db.define('property', {
   price: {type: Sequelize.FLOAT},
   address: {type: Sequelize.STRING},
-  title: {type: Sequelize.STRING},
-  description: {type: Sequelize.STRING},
   uri: {type: Sequelize.STRING},
   bedrooms: {type: Sequelize.INTEGER},
   bathrooms: {type: Sequelize.INTEGER},

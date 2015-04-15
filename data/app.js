@@ -37,6 +37,7 @@ program
   .option('-l, --location <coords>', 'Desired location')
   .option('-d, --distance <meters>', 'Max distance from location')
   .option('-b, --bedrooms <bedrooms>', 'Desired bedrooms')
+  .option('-c, --count <count>', 'Number of results')
   .action(function(env, options) {
 
     Property.db.sync().then(function () {
@@ -47,7 +48,8 @@ program
           maxPrice: parseInt(env.maxPrice, 10),
           location: env.location,
           distance: parseInt(env.distance, 10),
-          bedrooms: parseInt(env.bedrooms, 10)
+          bedrooms: parseInt(env.bedrooms, 10),
+          count: parseInt(env.count, 10)
         });
       });
     });

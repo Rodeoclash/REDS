@@ -3,24 +3,18 @@ var Config = require('../../../../config.js');
 
 var Features = function ($el) {
   this.$el = $el;
-  this.content = $el.html();
-};
-
-Features.prototype._matchContent = function(regex) {
-  var value = this.content.match(regex);
-  return _.isArray(value) ? parseInt(value[0]) : 0;
 };
 
 Features.prototype.bedrooms = function() {
-  return this._matchContent(Config.listing[Config.listing.type].regex.bed);
+  return this.$el.find('li').eq(0).find('span').html();
 };
 
 Features.prototype.bathrooms = function() {
-  return this._matchContent(Config.listing[Config.listing.type].regex.bath);
+  return this.$el.find('li').eq(1).find('span').html();
 };
 
 Features.prototype.carparks = function() {
-  return this._matchContent(Config.listing[Config.listing.type].regex.parking);
+  return this.$el.find('li').eq(2).find('span').html();
 };
 
 Features.prototype.toJSON = function() {

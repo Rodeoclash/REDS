@@ -7,4 +7,3 @@ RUN npm install
 RUN mkdir /app
 WORKDIR /app
 ADD . /app
-WORKDIR /app/data

@@ -10,17 +10,15 @@ Page.prototype.title = function () {
   return _.trim(this.$('title').html());
 };
 
-// TODO number
-
 Page.prototype.listings = function () {
   var that = this;
-  return this.$(Config.listing[Config.listing.type].selector).map(function(i, el) {
+  return this.$(Config.listing[Config.listing.site].selectors.listings).map(function(i, el) {
     return new Listing(that.$(el));
   });
 };
 
 Page.prototype.links = function () {
-  return this.$('.cN-pagination a');
+  return this.$(Config.listing[Config.listing.site].selectors.links);
 };
 
 module.exports = Page;

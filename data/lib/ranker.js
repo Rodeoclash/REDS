@@ -69,9 +69,9 @@ module.exports = {
       .value();
 
     console.log('==================================');
-    console.log('Top 10');
+    console.log('Top ' + options.count);
     console.log('==================================');
-    _.each(scoredProperties.slice(0, 10), function (property, i) {
+    _.each(scoredProperties.slice(0, options.count), function (property, i) {
       console.log((i + 1) + ' (' + property.score + ')', property.uri);
       console.log('---------------------------------');
       setTimeout(function () {

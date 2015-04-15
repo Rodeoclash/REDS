@@ -14,7 +14,7 @@ var c = new Crawler({
   callback : function (error, result, $) {       
     var page = new Page($);
 
-    console.log('Processing page: ', page.title());
+    console.log('Processing: ' + page.title());
 
     var filteredListings = _(page.listings())
       .reject(function (listing) {
@@ -32,6 +32,7 @@ var c = new Crawler({
     page.links().each(function(i, el) {
       c.queue(Config.domain + $(el).attr('href'));
     });
+
   },
 
   onDrain: function () {

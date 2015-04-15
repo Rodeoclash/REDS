@@ -1,5 +1,5 @@
 module.exports = {
-  domain: 'http://www.domain.com.au',
+  domain: 'http://www.realestate.com.au',
   suburbs: ['Brunswick', 'Northcote', 'Fitzroy', 'Coburg'],
   importance: {
     distance: 7,
@@ -18,41 +18,24 @@ module.exports = {
     }
   },
   listing: {
-    type: 'new',
-    'old': {
-      selector: '.s-listing:not([id*=tsTopSpot])',
+    site: 'realestate.com.au',
+    'realestate.com.au': {
       regex: {
-        price: /^\d+/,
-        bed: /\d\sbed/,
-        bath: /\d\sbath/,
-        parking: /\d\sparking/
+        price: /^\d+/
       },
       selectors: {
-        price: '.pricepoint',
-        address: '.feat-wrap h3 a',
-        title: '.description h5',
-        description: '.description p:not([class=contact])',
-        uri: 'a:contains("More details")',
-        features: '.features span'
-      }
-    },
-    'new': {
-      selector: '.listing-new:not([data-hash])',
-      regex: {
-        price: /^\d+/,
-        bed: /\d\sbed/,
-        bath: /\d\sbath/,
-        parking: /\d\sparking/
-      },
-      selectors: {
-        price: '.pricepoint',
-        address: '.address',
-        //title: '.description h5',
-        //description: '.description p:not([class=contact])',
-        uri: 'a.link-block',
-        features: '.listing-features'
+        links: '.pagination li a',
+        listings: '#searchResultsTbl .resultBody',
+        price: '.priceText',
+        address: '.vcard h2 a',
+        uri: '.vcard h2 a',
+        features: '.propertyFeatures',
+        bedrooms: 'li:eq(0) span',
+        bathrooms: 'li:eq(1) span',
+        carparks: 'li:eq(2) span'
       }
     }
+
   }
   
 };
